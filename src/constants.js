@@ -9,6 +9,7 @@ export const SERIES = 'SERIES'
 export const ADD_FILTER = 'ADD_FILTER'
 export const LOAD_ITEM_BY_ID ='LOAD_ITEM_BY_ID'
 export const SEARCH ='SEARCH'
+export const CHECK_LOCAL ='CHECK_LOCAL'
 export const LANGUAGE = navigator.language || navigator.userLanguage;
 export const CONTENT_DEFAULT = {
     total_results: null,
@@ -21,5 +22,6 @@ export const CONTENT_DEFAULT = {
     singleLoading:false,
     single:{
 
-    }
+    },
+    offlineFail:false
 }

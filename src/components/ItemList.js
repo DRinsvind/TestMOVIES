@@ -7,11 +7,18 @@ import Item from './Item'
 class ItemList extends Component{
 
     componentDidMount(){
-        this.props.checkAndLoadItemsForPage(this.props.content,this.props.page)
+
+        const{checkAndLoadItemsForPage,content,page,offlineFail}=this.props
+        checkAndLoadItemsForPage(content,page)
     }
 
     componentDidUpdate(){
-        this.props.checkAndLoadItemsForPage(this.props.content,this.props.page)
+        const{checkAndLoadItemsForPage,content,page,offlineFail}=this.props
+        if(!offlineFail)checkAndLoadItemsForPage(content,page)
+    }
+    reloadPage =()=>{
+        const{checkAndLoadItemsForPage,content,page}=this.props
+        checkAndLoadItemsForPage(content,page)
     }
     getPagination = ()=>{
         let previous=<div className="col-4"></div>,next=<div className="col-4"></div>
@@ -46,7 +53,14 @@ class ItemList extends Component{
         }
     }
     render(){
-        console.log(this.props.page)
+        if(this.props.offlineFail){
+            return (
+                <div className="col-12 col-lg-9">
+                    <h2>SORRY, THIS PAGE IS NOT AVAILABLE FOR OFFLINE VERSION</h2>
+                    <button onClick={this.reloadPage}>reload</button>
+                </div>
+            )
+        }
         if(this.props.loading){
             return <Loader/>
         }
@@ -70,5 +84,6 @@ export default connect((state,ownProps)=>{
         loading:state[ownProps.content].loading,
         total_pages:state[ownProps.content].total_pages,
         items:state[ownProps.content].pagination[ownProps.page],
+        offlineFail:state[ownProps.content].offlineFail
     })
 },{checkAndLoadItemsForPage})(ItemList)

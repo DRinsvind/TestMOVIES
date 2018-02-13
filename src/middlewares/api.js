@@ -1,3 +1,6 @@
+//Мидлвара для обращения к themoviedb в случаи успеха данные будут записаны localStorage
+//если же нет, то мы отправим наш запрос на возмождность добычи данных из офлайна в
+//offline мидлваре
 import {START,SUCCESS,FAIL} from '../constants'
 export default  store => next => action => {
     const {callAPI,type,...rest} = action
@@ -7,13 +10,13 @@ export default  store => next => action => {
         ...rest,type:type+START
     })
 
-        fetch(callAPI)
-            .then(res=>res.json())
-            .then(response=>{
-                return next({...action,type:type+SUCCESS,response})
-            })
-            .catch(error=>next({...action,type:type+FAIL,error}))
-
+    return fetch(callAPI)
+        .then(res=>res.json()
+        )
+        .then(response=>{
+            return next({...action,type:type+SUCCESS,response,success:true})
+        })
+        .catch(error=>next({...action,type:type,checkOffline:true}))
 
 
 }

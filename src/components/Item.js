@@ -16,6 +16,7 @@ class Item extends Component{
         )
     }
     getImage =()=>{
+
         if(this.props.item.poster_path){
             return "https://image.tmdb.org/t/p/w370_and_h556_bestv2/"+this.props.item.poster_path
         }else{

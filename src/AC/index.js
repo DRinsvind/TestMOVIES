@@ -24,7 +24,7 @@ export function searchFunction(content,search) {
         let apiContent = getApiContent(content)
         dispatch({
             type: SEARCH,
-            payload: {search},
+            payload: {search,content},
             callAPI: `http://api.themoviedb.org/3/search/${apiContent}?api_key=${KEY}&language=${LANGUAGE}&query=${search}`
         })
     }
@@ -45,9 +45,9 @@ export function changeFilter(content,newFilter){
 export function checkAndLoadItemsForPage(content,page) {
     return (dispatch, getState) => {
 
-        const {[content]:{pagination,loading,filter}}=getState()
+        const {[content]:{pagination,loading,filter,offlineFail}}=getState()
 
-        if(loading||pagination[page]) return
+        if(!offlineFail &&(loading||pagination[page])) return
 
         let apiContent = getApiContent(content),filterContent=''
         if(filter){
