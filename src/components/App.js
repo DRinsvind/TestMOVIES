@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import Choose from './Choose'
 import Main from './Main'
+import Component404 from './Component404'
 import {connect} from 'react-redux'
 import {getPopular,getProkat,getRating} from '../AC'
 import {Route, Redirect,Link,Switch} from 'react-router-dom'
@@ -62,6 +63,12 @@ class App extends Component{
                         <Route path="/series/single/:id" component = {this.getSingleLink('series')}/>
                         <Route path="/movies/:page" component = {this.getContentLink('movies')}/>
                         <Route path="/series/:page" component = {this.getContentLink('series')}/>
+                        <Route path="/404" component = {Component404}/>
+                        <Route exact path="*" render={() => (
+
+                            <Redirect to="/404"/>
+
+                        )}/>
                     </Switch>
                     <bottom></bottom>
                 </div>

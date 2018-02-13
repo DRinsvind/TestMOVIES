@@ -1,5 +1,5 @@
 import {LOAD_ITEMS_FOR_PAGE,KEY,MOVIES,SERIES,ADD_FILTER,LANGUAGE,SEARCH,LOAD_ITEM_BY_ID} from '../constants'
-
+import {push,replace} from 'react-router-redux'
 function getApiContent(content){
     if (content === MOVIES.toLowerCase()) {
         return 'movie'
@@ -9,6 +9,7 @@ function getApiContent(content){
 }
 export function loadItemById(content,id) {
     return (dispatch, getState) => {
+        if(+id!==+id) return dispatch(replace('/404'))
         let apiContent = getApiContent(content)
         const {[content]:{single,singleLoading}}=getState()
         if(single[id]||singleLoading) return
@@ -44,9 +45,9 @@ export function changeFilter(content,newFilter){
 }
 export function checkAndLoadItemsForPage(content,page) {
     return (dispatch, getState) => {
-
-        const {[content]:{pagination,loading,filter,offlineFail}}=getState()
-
+        if(+page!==+page) return dispatch(replace('/404'))
+        const {[content]:{pagination,total_pages,loading,filter,offlineFail}}=getState()
+        if(total_pages!==null && page>=total_pages)return dispatch(replace('/404'))
         if(!offlineFail &&(loading||pagination[page])) return
 
         let apiContent = getApiContent(content),filterContent=''
