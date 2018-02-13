@@ -1,0 +1,158 @@
+
+#container{
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+main{
+    flex-grow: 1;
+    padding: 25px 0px;
+}
+
+header{
+    padding: 25px 0px;
+    background: rgb(0, 188, 212);
+}
+.header-link{
+    color:white;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+}
+.header-link:hover,.header-link:active{
+    color:white;
+}
+footer{
+    height: 200px;
+    background-color: blue;
+}
+.test{
+    background-color: yellow;
+    height: 500px;
+}
+.test2{
+    background-color: green;
+    height: 500px;
+}
+.test3{
+    background-color: purple;
+    height: 500px;
+    margin-bottom: 25px;
+}
+.item-block{
+    margin: 0px auto 25px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+    position: relative;
+    height: calc(100% - 25px);
+
+}
+.item-block__link{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+}
+.item-block__content{
+    padding: 15px 5px;
+}
+.item-block__rating-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+.item-block__star-block{
+    display: flex;
+}
+.star{
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('src/images/star.svg');
+}
+.item-block__heading{
+    height: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 21px;
+    overflow: hidden;
+
+}
+.item-block__img-block{
+    width: 100%;
+    display: block;
+    margin: 0px auto;
+}
+.pagination-list__link{
+text-align: center;
+    color:red;
+    display: block;
+ }
+.pagination-list__heading{
+    text-align: center;
+}
+.pagination-list__link:hover{
+    color:red;
+}
+.item-list{
+    padding: 30px 0px;
+}
+.filter-list{
+    padding: 30px 0px;
+}
+.filter-list>.row>*{
+    margin-bottom: 15px;
+}
+
+.content-link{
+    display:block;
+    margin-bottom: 25px;
+    height: 400px;
+    width:100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.active{
+    color:red;
+}
+.content-link.content-link__series{
+    background-image: url('src/images/tvfeed-collection.jpg');
+}
+
+.content-link.content-link__movies{
+
+    background-image: url('src/images/119.jpg');
+}
+.search-block{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.search-result{
+    position: absolute;
+    border:2px solid black;
+    top: 100%;
+    width: 100%;
+    left:0px;
+}
+.search-result-link{
+    display: block;
+    padding: 10px 5px;
+    border-bottom: 1px solid black;
+}

@@ -19,6 +19,14 @@ module.exports = {
                 test: /\.js/,
                 loaders: ['babel-loader'],
                 include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.css/,
+                loaders: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpg|svg)$/,
+                loader: 'url-loader'
             }
         ]
     }
